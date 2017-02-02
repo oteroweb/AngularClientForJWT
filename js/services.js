@@ -2,9 +2,9 @@ var bookWishlistAppServices = angular.module('bookWishlistAppServices', [
     'LocalStorageModule',
     'restangular'
 ]);
-
+var url = "http://dailybitspro.com/franchesco/public/api/";
 bookWishlistAppServices.config(function(RestangularProvider) {
-  RestangularProvider.setBaseUrl('http://dailybitspro.com/franchesco/');
+  RestangularProvider.setBaseUrl(url);
 });
 
 
@@ -27,7 +27,7 @@ bookWishlistAppServices.factory('userService', ['$http', 'localStorageService', 
 
     function signup(name, email, password, onSuccess, onError) {
 
-        $http.post('http://dailybitspro.com/franchesco/public/api/auth/signup', 
+        $http.post(url+'auth/signup', 
         {
             name: name,
             email: email,
@@ -48,7 +48,7 @@ bookWishlistAppServices.factory('userService', ['$http', 'localStorageService', 
 
     function login(email, password, onSuccess, onError){
 
-        $http.post('http://dailybitspro.com/franchesco/public/api/auth/login', 
+        $http.post(url+'auth/login', 
         {
             email: email,
             password: password
@@ -89,7 +89,7 @@ bookWishlistAppServices.factory('userService', ['$http', 'localStorageService', 
 bookWishlistAppServices.factory('bookService', ['Restangular', 'userService', function(Restangular, userService) {
 
     function getAll(onSuccess, onError){
-        Restangular.all('api/books').getList().then(function(response){
+        Restangular.all('api/book').getList().then(function(response){
 
             onSuccess(response);
         
@@ -116,7 +116,7 @@ bookWishlistAppServices.factory('bookService', ['Restangular', 'userService', fu
 
     function create(data, onSuccess, onError){
 
-        Restangular.all('api/books').post(data).then(function(response){
+        Restangular.all('api/book').post(data).then(function(response){
 
             onSuccess(response);
         
@@ -130,7 +130,7 @@ bookWishlistAppServices.factory('bookService', ['Restangular', 'userService', fu
 
     function update(bookId, data, onSuccess, onError){
 
-        Restangular.one("api/books").customPUT(data, bookId).then(function(response) {
+        Restangular.one("api/book").customPUT(data, bookId).then(function(response) {
                 
                 onSuccess(response);
 
