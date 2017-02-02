@@ -4,7 +4,7 @@ var bookWishlistAppServices = angular.module('bookWishlistAppServices', [
 ]);
 
 bookWishlistAppServices.config(function(RestangularProvider) {
-  RestangularProvider.setBaseUrl('http://localhost:8000');
+  RestangularProvider.setBaseUrl('http://dailybitspro.com/franchesco/');
 });
 
 
@@ -27,7 +27,7 @@ bookWishlistAppServices.factory('userService', ['$http', 'localStorageService', 
 
     function signup(name, email, password, onSuccess, onError) {
 
-        $http.post('http://localhost:8000/api/auth/signup', 
+        $http.post('http://dailybitspro.com/franchesco/public/api/auth/signup', 
         {
             name: name,
             email: email,
@@ -48,7 +48,7 @@ bookWishlistAppServices.factory('userService', ['$http', 'localStorageService', 
 
     function login(email, password, onSuccess, onError){
 
-        $http.post('http://localhost:8000/api/auth/login', 
+        $http.post('http://dailybitspro.com/franchesco/public/api/auth/login', 
         {
             email: email,
             password: password
