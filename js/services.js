@@ -89,7 +89,7 @@ bookWishlistAppServices.factory('userService', ['$http', 'localStorageService', 
 bookWishlistAppServices.factory('bookService', ['Restangular', 'userService', function(Restangular, userService) {
 
     function getAll(onSuccess, onError){
-        Restangular.all('api/book').getList().then(function(response){
+        Restangular.all('book').getList().then(function(response){
 
             onSuccess(response);
         
@@ -102,7 +102,7 @@ bookWishlistAppServices.factory('bookService', ['Restangular', 'userService', fu
 
     function getById(bookId, onSuccess, onError){
 
-        Restangular.one('api/books', bookId).get().then(function(response){
+        Restangular.one('book', bookId).get().then(function(response){
 
             onSuccess(response);
 
@@ -116,7 +116,7 @@ bookWishlistAppServices.factory('bookService', ['Restangular', 'userService', fu
 
     function create(data, onSuccess, onError){
 
-        Restangular.all('api/book').post(data).then(function(response){
+        Restangular.all('book').post(data).then(function(response){
 
             onSuccess(response);
         
@@ -130,7 +130,7 @@ bookWishlistAppServices.factory('bookService', ['Restangular', 'userService', fu
 
     function update(bookId, data, onSuccess, onError){
 
-        Restangular.one("api/book").customPUT(data, bookId).then(function(response) {
+        Restangular.one("book").customPUT(data, bookId).then(function(response) {
                 
                 onSuccess(response);
 
@@ -144,7 +144,8 @@ bookWishlistAppServices.factory('bookService', ['Restangular', 'userService', fu
     }
 
     function remove(bookId, onSuccess, onError){
-        Restangular.one('api/books/', bookId).remove().then(function(){
+        console.log("eliminando");
+        Restangular.one('book', bookId).remove().then(function(){
 
             onSuccess();
 
